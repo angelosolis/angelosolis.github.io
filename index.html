@@ -1,32 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style data-vite-theme="" data-inject-first="">:root {
+      --background: 240 10% 3.9%;
+--foreground: 0 0% 98%;
+--muted: 240 3.7% 15.9%;
+--muted-foreground: 240 5% 64.9%;
+--popover: 240 10% 3.9%;
+--popover-foreground: 0 0% 98%;
+--card: 240 10% 3.9%;
+--card-foreground: 0 0% 98%;
+--border: 240 3.7% 15.9%;
+--input: 240 3.7% 15.9%;
+--primary: 213 92% 49%;
+--primary-foreground: 216 100% 99%;
+--secondary: 240 3.7% 15.9%;
+--secondary-foreground: 0 0% 98%;
+--accent: 240 3.7% 15.9%;
+--accent-foreground: 0 0% 98%;
+--destructive: 0 62.8% 30.6%;
+--destructive-foreground: 0 0% 98%;
+--ring: 240 4.9% 83.9%;
+--radius: 0.75rem;
+  }
+  .light {
+      --background: 0 0% 100%;
+--foreground: 20 14.3% 4.1%;
+--muted: 60 4.8% 95.9%;
+--muted-foreground: 25 5.3% 44.7%;
+--popover: 0 0% 100%;
+--popover-foreground: 20 14.3% 4.1%;
+--card: 0 0% 100%;
+--card-foreground: 20 14.3% 4.1%;
+--border: 20 5.9% 90%;
+--input: 20 5.9% 90%;
+--primary: 213 92% 49%;
+--primary-foreground: 216 100% 99%;
+--secondary: 60 4.8% 95.9%;
+--secondary-foreground: 24 9.8% 10%;
+--accent: 60 4.8% 95.9%;
+--accent-foreground: 24 9.8% 10%;
+--destructive: 0 84.2% 60.2%;
+--destructive-foreground: 60 9.1% 97.8%;
+--ring: 20 14.3% 4.1%;
+--radius: 0.75rem;
+  }</style>
+
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Be My Valentine</title>
-    <link rel="stylesheet" href="css/valentine.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Angelo Solis | Developer Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="/DevPortfolioNinja/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="description" content="Portfolio website of Angelo Solis, a software developer specializing in web development and cloud solutions." />
+    <script type="module" crossorigin src="/DevPortfolioNinja/assets/index-C8qTqlj1.js"></script>
+    <link rel="stylesheet" crossorigin href="/DevPortfolioNinja/assets/index-C1RBkCb0.css">
   </head>
   <body>
-    <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
-    <button class="answerButton" onclick="location.href='thankyou.html'">
-      Yes
-    </button>
-    <button class="answerButton" id="noButton">Nope o(╥﹏╥)o</button>
-    <br />
-    <img src="cat.gif" alt="cat asking question" class="responsive" />
-
-    <script>
-      document
-        .getElementById("noButton")
-        .addEventListener("click", function () {
-          var yesButton = document.querySelector(
-            'button[onclick*="thankyou.html"]'
-          );
-          var currentFontSize = parseInt(
-            window.getComputedStyle(yesButton).fontSize
-          );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
-        });
-    </script>
+    <div id="root"></div>
   </body>
 </html>
