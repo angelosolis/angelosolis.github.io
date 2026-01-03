@@ -1,20 +1,882 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Angelo Solis - Fullstack Developer & Database Engineer Portfolio" />
-    <meta name="keywords" content="portfolio, web development, fullstack, database engineer, software developer" />
-    <meta name="author" content="Angelo Solis" />
-    <meta property="og:title" content="Angelo Solis - Portfolio" />
-    <meta property="og:description" content="Fullstack Developer & Database Engineer" />
-    <meta property="og:type" content="website" />
-    <title>Angelo Solis | Fullstack Developer & Database Engineer</title>
-    <script type="module" crossorigin src="/assets/index-DrH9QL5F.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BT3sXxyB.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 23rd Birthday, Bb</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, #fdf6f6 0%, #f9e8e8 50%, #fce4ec 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            color: #5d4e4e;
+        }
+
+        /* Floating hearts background */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.15;
+            animation: floatHeart 15s infinite ease-in-out;
+            color: #e8a0a0;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Slideshow container */
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease, visibility 1s ease;
+            text-align: center;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: #c77d7d;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(199, 125, 125, 0.2);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            color: #8b6b6b;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            color: #c77d7d;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            line-height: 1.9;
+            color: #6b5858;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: #9b7b7b;
+            margin-bottom: 30px;
+        }
+
+        /* Photo slides */
+        .photo-container {
+            width: 280px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(139, 107, 107, 0.3);
+            margin: 20px auto 30px;
+            border: 8px solid white;
+            background: linear-gradient(135deg, #f5e6e6 0%, #edd9d9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-caption {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #8b6b6b;
+            margin-top: 10px;
+        }
+
+        /* Video container */
+        .video-container {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(139, 107, 107, 0.3);
+            margin: 15px auto 20px;
+            border: 6px solid white;
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Special styling for emotional slides */
+        .honest-slide p {
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+
+        .promise-item {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #c77d7d;
+            text-align: left;
+        }
+
+        /* Love correction slide */
+        .love-correction {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 30px 40px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+            color: #b89999;
+            font-size: 1.5rem;
+        }
+
+        .correction {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #c77d7d;
+            margin-top: 15px;
+        }
+
+        /* Navigation */
+        .nav-buttons {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #d4a5a5;
+            color: #8b6b6b;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 107, 107, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: #c77d7d;
+            color: white;
+            border-color: #c77d7d;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Progress dots */
+        .progress-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(199, 125, 125, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #c77d7d;
+            transform: scale(1.3);
+        }
+
+        .dot:hover {
+            background: #c77d7d;
+        }
+
+        /* Start button for first slide */
+        .start-btn {
+            background: linear-gradient(135deg, #c77d7d 0%, #d4a5a5 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 35px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(199, 125, 125, 0.4);
+            margin-top: 30px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(199, 125, 125, 0.5);
+        }
+
+        /* Final slide special styling */
+        .final-message {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(139, 107, 107, 0.15);
+        }
+
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #c77d7d;
+            margin-top: 30px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal {
+            background: linear-gradient(135deg, #fff 0%, #fdf6f6 100%);
+            padding: 40px;
+            border-radius: 25px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 80px rgba(139, 107, 107, 0.4);
+            transform: scale(0.8);
+            transition: transform 0.4s ease;
+        }
+
+        .modal-overlay.show .modal {
+            transform: scale(1);
+        }
+
+        .modal h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #c77d7d;
+            margin-bottom: 20px;
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+            color: #6b5858;
+        }
+
+        .date-plan {
+            background: rgba(199, 125, 125, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .date-item {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+            font-size: 1.05rem;
+        }
+
+        .date-number {
+            background: #c77d7d;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .modal-close {
+            background: linear-gradient(135deg, #c77d7d 0%, #d4a5a5 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(199, 125, 125, 0.4);
+        }
+
+        .modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(199, 125, 125, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                padding-bottom: 100px;
+            }
+
+            .progress-dots {
+                right: 10px;
+                gap: 8px;
+            }
+
+            .dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            .nav-buttons {
+                bottom: 20px;
+            }
+
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .photo-container {
+                width: 220px;
+                height: 280px;
+            }
+
+            .video-container {
+                max-width: 90%;
+            }
+
+            .final-message {
+                padding: 25px;
+            }
+
+            .love-correction {
+                padding: 20px;
+            }
+
+            .correction {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="hearts-bg" id="heartsContainer"></div>
+
+    <!-- Progress dots -->
+    <div class="progress-dots" id="progressDots"></div>
+
+    <!-- Slideshow -->
+    <div class="slideshow" id="slideshow">
+
+        <!-- Slide 1: Opening -->
+        <div class="slide active" data-slide="0">
+            <div class="slide-content">
+                <p class="subtitle">For my one and only</p>
+                <h1>Happy 23rd Birthday</h1>
+                <h2>My Dearest Angelika</h2>
+                <p>I made this for you because you deserve to know how much you mean to me, and because there are things I need to say from the bottom of my heart.</p>
+                <button class="start-btn" onclick="nextSlide()">Begin</button>
+            </div>
+        </div>
+
+        <!-- Slide 2: Photo 1 -->
+        <div class="slide" data-slide="1">
+            <div class="slide-content">
+                <h3>8 Years Together</h3>
+                <div class="photo-container">
+                    <img src="photos/307abc55-696c-46e6-b67d-aa54d76a161d.jpg" alt="Us">
+                </div>
+                <p class="photo-caption">From the very beginning, you've been my person.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Photo 2 -->
+        <div class="slide" data-slide="2">
+            <div class="slide-content">
+                <h3>Through Everything</h3>
+                <div class="photo-container">
+                    <img src="photos/45495efa-e8be-4cd2-b5a3-328a7d2f4b3d.jpg" alt="Us">
+                </div>
+                <p class="photo-caption">You've stayed by my side through all my flaws.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Photo 3 -->
+        <div class="slide" data-slide="3">
+            <div class="slide-content">
+                <h3>Your Beautiful Heart</h3>
+                <div class="photo-container">
+                    <img src="photos/6c76086e-1308-41df-afba-6014c5bfe7bb.jpg" alt="Us">
+                </div>
+                <p class="photo-caption">You deserve someone who matches how much love you give.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Photo 4 -->
+        <div class="slide" data-slide="4">
+            <div class="slide-content">
+                <h3>My Favorite Person</h3>
+                <div class="photo-container">
+                    <img src="photos/a62e73e7-fe08-4076-bbd1-e80342033a65.jpg" alt="Us">
+                </div>
+                <p class="photo-caption">Every moment with you is a gift I didn't deserve.</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Photo 5 -->
+        <div class="slide" data-slide="5">
+            <div class="slide-content">
+                <h3>Us</h3>
+                <div class="photo-container">
+                    <img src="photos/aab7cccb-8414-4e89-9ee2-fa2927ed54f8.jpg" alt="Us">
+                </div>
+                <p class="photo-caption">I look at these photos and see how patient you've been with me.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Honest acknowledgment -->
+        <div class="slide" data-slide="6">
+            <div class="slide-content honest-slide">
+                <h2>Bb, I Need To Be Honest</h2>
+                <p>For 8 years, you've given me your heart fully and unconditionally. And I know I haven't always returned that the way you deserved.</p>
+                <p>I was immature. I lacked emotional presence. I didn't give you the love and attention you needed. And what happened last December 24... I know how much that hurt you.</p>
+                <p>All I did was provide for you financially. I thought that was enough. But I realized it wasn't. You didn't just need money or things - you needed me. My time, my attention, my heart. And I failed to give you that.</p>
+                <p>I'm not here to make excuses. What I did was wrong. The microcheating, the emotional distance, all of it. You deserved so much better from me.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: The "loved" correction -->
+        <div class="slide" data-slide="7">
+            <div class="slide-content">
+                <h2>About What I Said...</h2>
+                <div class="love-correction">
+                    <p>When you caught me, I said:</p>
+                    <p class="strikethrough">"I loved you"</p>
+                    <p style="margin-top: 20px;">I said that to justify what I did. I was making excuses. I was trying to rationalize something that had no excuse.</p>
+                    <p style="margin-top: 20px;">But Dae, that was a lie. The truth is:</p>
+                    <p class="correction">I love you</p>
+                    <p style="margin-top: 20px;">I never stopped loving you. I was just too much of a coward to face what I did, so I tried to make it seem like I didn't care. But I do. I always have. And I'm so sorry I ever made you doubt that.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: The realization -->
+        <div class="slide" data-slide="8">
+            <div class="slide-content">
+                <h3>I Finally Understand</h3>
+                <p>It took almost losing you for me to truly see what I had been doing wrong. All these years, you loved me with everything, and I took that for granted.</p>
+                <p>You stayed even when I didn't deserve it. You believed in us even when I wasn't showing up the way I should have.</p>
+                <p>Angelika, you are the most patient, loving, and forgiving person I know. And I am so deeply sorry for every moment I made you feel less than cherished.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: My promises -->
+        <div class="slide" data-slide="9">
+            <div class="slide-content">
+                <h2>My Promises To You</h2>
+                <div class="promise-item">
+                    <strong>I promise to be emotionally present.</strong><br>
+                    No more distance. I will be there for you fully.
+                </div>
+                <div class="promise-item">
+                    <strong>I promise to show you love every day.</strong><br>
+                    Not just in words, but in actions you can feel.
+                </div>
+                <div class="promise-item">
+                    <strong>I promise to be the partner you deserve.</strong><br>
+                    The one who matches your effort and your heart.
+                </div>
+                <div class="promise-item">
+                    <strong>I promise to grow and change.</strong><br>
+                    Not just say it, but prove it through my actions.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Photo 6 -->
+        <div class="slide" data-slide="10">
+            <div class="slide-content">
+                <h3>Our Memories</h3>
+                <div class="photo-container">
+                    <img src="photos/e384c88d-7cc2-4319-bf35-3627123abc41.jpg" alt="Us">
+                </div>
+                <p class="photo-caption">Every photo tells a story of your love carrying us through.</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Photo 7 -->
+        <div class="slide" data-slide="11">
+            <div class="slide-content">
+                <h3>My World</h3>
+                <div class="photo-container">
+                    <img src="photos/e8fde5f9-4a0a-4f84-a30c-e055648e1034.jpg" alt="Us">
+                </div>
+                <p class="photo-caption">You are my world, Bb. I'm sorry it took me so long to show it.</p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Photo 8 -->
+        <div class="slide" data-slide="12">
+            <div class="slide-content">
+                <h3>Thank You</h3>
+                <div class="photo-container">
+                    <img src="photos/ee1f1698-a062-4fe7-b7bb-9be40bb03bbe.jpg" alt="Us">
+                </div>
+                <p class="photo-caption">Thank you for giving me another chance to love you right.</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: Video - The Gift -->
+        <div class="slide" data-slide="13">
+            <div class="slide-content">
+                <h3>My Gift For You</h3>
+                <div class="video-container">
+                    <video controls playsinline>
+                        <source src="photos/fb4eea1c-c465-4936-a76f-702742a5acdb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p class="photo-caption">Happy Birthday, Dae. I really hope you like my gift. You deserve the world, and I'll keep working hard to give it to you.</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Photo 9 -->
+        <div class="slide" data-slide="14">
+            <div class="slide-content">
+                <h3>Our Future</h3>
+                <div class="photo-container">
+                    <img src="photos/f5dc90f6-51cf-488e-9f6e-3a401f350e7c.jpg" alt="Us">
+                </div>
+                <p class="photo-caption">I want to spend every birthday with you, loving you better than the last.</p>
+            </div>
+        </div>
+
+        <!-- Slide 16: Final message -->
+        <div class="slide" data-slide="15">
+            <div class="slide-content">
+                <div class="final-message">
+                    <h3>Happy Birthday, My Dearest Angelika</h3>
+                    <p>Thank you for giving me another chance. Thank you for your patience, your grace, and your love.</p>
+                    <p>On your 23rd birthday, I want you to know: I see you. I appreciate you. And I am committed to being the man you deserve.</p>
+                    <p>I love you, Dae. Not loved. <strong>Love.</strong> Present tense. Forever tense.</p>
+                    <p>Here's to your new year of life, and to our new chapter together.</p>
+                    <p class="signature">Forever yours, Angelo</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation buttons -->
+    <div class="nav-buttons">
+        <button class="nav-btn" id="prevBtn" onclick="prevSlide()">Back</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Continue</button>
+    </div>
+
+    <!-- Modal for date plans -->
+    <div class="modal-overlay" id="dateModal">
+        <div class="modal">
+            <h3>One More Thing, Bb...</h3>
+            <p>I have something planned for us tomorrow!</p>
+            <div class="date-plan">
+                <div class="date-item">
+                    <span class="date-number">1</span>
+                    <span>Church - Let's start the day with gratitude</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-number">2</span>
+                    <span>New Town - Lunch date together</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-number">3</span>
+                    <span>Robinson - Escape Room adventure!</span>
+                </div>
+            </div>
+            <p>I'll pick you up around 10 or 11am. I can't wait to spend tomorrow with you. I love you, Bb.</p>
+            <button class="modal-close" onclick="closeModal()">I Can't Wait!</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createProgressDots();
+            createFloatingHearts();
+            updateButtons();
+            updateProgressDots();
+        });
+
+        function createProgressDots() {
+            const container = document.getElementById('progressDots');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                container.appendChild(dot);
+            }
+        }
+
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsContainer');
+            const hearts = ['&#10084;', '&#10083;', '&#9825;'];
+
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.animationDuration = (15 + Math.random() * 10) + 's';
+                heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+                container.appendChild(heart);
+            }
+        }
+
+        function goToSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+
+            // Pause any playing videos when leaving a slide
+            document.querySelectorAll('video').forEach(v => v.pause());
+
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            document.querySelector(`[data-slide="${index}"]`).classList.add('active');
+            currentSlide = index;
+
+            updateButtons();
+            updateProgressDots();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                goToSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                goToSlide(currentSlide - 1);
+            }
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = currentSlide === 0;
+            prevBtn.style.visibility = currentSlide === 0 ? 'hidden' : 'visible';
+
+            if (currentSlide === totalSlides - 1) {
+                nextBtn.textContent = 'I Love You, Bb';
+                nextBtn.onclick = () => {
+                    createHeartBurst();
+                    setTimeout(() => {
+                        openModal();
+                    }, 1500);
+                };
+            } else {
+                nextBtn.textContent = 'Continue';
+                nextBtn.onclick = nextSlide;
+            }
+        }
+
+        function updateProgressDots() {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function openModal() {
+            const modal = document.getElementById('dateModal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('dateModal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 400);
+        }
+
+        function createHeartBurst() {
+            const container = document.getElementById('heartsContainer');
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '&#10084;';
+                    heart.style.position = 'fixed';
+                    heart.style.left = '50%';
+                    heart.style.top = '50%';
+                    heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+                    heart.style.color = '#c77d7d';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1000';
+                    heart.style.transition = 'all 2s ease-out';
+                    heart.style.opacity = '1';
+                    container.appendChild(heart);
+
+                    setTimeout(() => {
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = 100 + Math.random() * 300;
+                        heart.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+                        heart.style.opacity = '0';
+                    }, 50);
+
+                    setTimeout(() => heart.remove(), 2500);
+                }, i * 30);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+    </script>
+</body>
 </html>
