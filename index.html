@@ -419,6 +419,43 @@
             box-shadow: 0 12px 35px rgba(199, 125, 125, 0.5);
         }
 
+        /* Music button */
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #d4a5a5;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 107, 107, 0.2);
+        }
+
+        .music-btn:hover {
+            background: #c77d7d;
+            border-color: #c77d7d;
+            transform: scale(1.1);
+        }
+
+        .music-btn.playing {
+            background: #c77d7d;
+            border-color: #c77d7d;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(199, 125, 125, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(199, 125, 125, 0); }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .slide {
@@ -469,6 +506,16 @@
     </style>
 </head>
 <body>
+    <!-- Background music -->
+    <audio id="bgMusic" loop>
+        <source src="photos/endofbeginning.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music button -->
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()" title="Play Music">
+        <span id="musicIcon">&#9835;</span>
+    </button>
+
     <!-- Floating hearts background -->
     <div class="hearts-bg" id="heartsContainer"></div>
 
@@ -485,7 +532,7 @@
                 <h1>Happy 23rd Birthday</h1>
                 <h2>My Dearest Angelika</h2>
                 <p>I made this for you because you deserve to know how much you mean to me, and because there are things I need to say from the bottom of my heart.</p>
-                <button class="start-btn" onclick="nextSlide()">Begin</button>
+                <button class="start-btn" onclick="startSlideshow()">Begin</button>
             </div>
         </div>
 
@@ -763,6 +810,16 @@
         }
 
         function nextSlide() {
+            // Start music if not already playing
+            const music = document.getElementById('bgMusic');
+            if (music.paused) {
+                const btn = document.getElementById('musicBtn');
+                const icon = document.getElementById('musicIcon');
+                music.play();
+                btn.classList.add('playing');
+                icon.innerHTML = '&#9836;';
+            }
+
             if (currentSlide < totalSlides - 1) {
                 goToSlide(currentSlide + 1);
             }
@@ -799,6 +856,34 @@
             document.querySelectorAll('.dot').forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSlide);
             });
+        }
+
+        function startSlideshow() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicBtn');
+            const icon = document.getElementById('musicIcon');
+
+            music.play();
+            btn.classList.add('playing');
+            icon.innerHTML = '&#9836;';
+
+            nextSlide();
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicBtn');
+            const icon = document.getElementById('musicIcon');
+
+            if (music.paused) {
+                music.play();
+                btn.classList.add('playing');
+                icon.innerHTML = '&#9836;';
+            } else {
+                music.pause();
+                btn.classList.remove('playing');
+                icon.innerHTML = '&#9835;';
+            }
         }
 
         function openModal() {
