@@ -172,7 +172,7 @@
     <main class="app">
         <header>
             <h1>2-Second Timer</h1>
-            <p>The big number ticks up in 2-second steps &mdash; the real time keeps counting every second underneath.</p>
+            <p>The big number ticks up in 2-second steps (actual time &times; 2) &mdash; the real time keeps counting every second underneath.</p>
         </header>
 
         <section class="timer-card" aria-label="Stopwatch">
@@ -224,10 +224,12 @@
                 return pad(mins) + ':' + pad(secs);
             }
 
-            // Big display: snap DOWN to the nearest even second so it advances 0,2,4,...
+            // Big display: shows DOUBLE the actual elapsed seconds, so every real
+            // second it jumps by 2 (actual 2s -> visual 4s). The underlying time
+            // stays accurate; only the displayed value is doubled.
             function renderVisual() {
-                var totalSeconds = Math.floor(elapsedMs() / 1000);
-                var step = totalSeconds - (totalSeconds % 2); // nearest lower even second
+                var actualSeconds = Math.floor(elapsedMs() / 1000);
+                var step = actualSeconds * 2; // 2-second increments per real second
                 if (step !== lastVisualStep) {
                     lastVisualStep = step;
                     displayEl.textContent = formatClock(step);
